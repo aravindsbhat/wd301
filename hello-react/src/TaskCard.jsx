@@ -1,4 +1,4 @@
-import "./taskCard.css"
+import "./TaskCard.css"
 const TaskCard = (props) => {
     return (
       <div className="TaskItem mb-4 ">

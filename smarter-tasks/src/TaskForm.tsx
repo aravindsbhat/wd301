@@ -15,8 +15,8 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
         this.state = {
             title: "",
             desc: "",
-            dueDate: new Date(),
-        };
+            dueDate: null as unknown as Date
+        }
     }
 
     addTask: React.FormEventHandler<HTMLFormElement> = (event) => {
@@ -39,7 +39,7 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
     }
 
     dateChanged: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        this.setState({ dueDate: new Date(e.target.value) });
+        this.setState({ dueDate: e.target.value ? new Date(e.target.value): null as unknown as Date });
     }
 
     render(): React.ReactNode {
@@ -56,9 +56,9 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
                 </div>
                 <div className="flex items-center mb-2">
                 <label className="w-32">Due Date</label>
-                <input id="todoDueDate"className="border p-1 flex-1" required type="date" value={this.state.dueDate.toISOString().slice(0, 10)} onChange={this.dateChanged} />
+                <input id="todoDueDate"className="border p-1 flex-1" required type="date" value={this.state.dueDate? this.state.dueDate.toISOString().slice(0, 10): ""} onChange={this.dateChanged} />
                 </div>
-                <button className="ml-4" type="submit">Add Item</button>
+                <button className="ml-4" id="addTaskButton" type="submit">Add Item</button>
             </form>
             </div>
         )

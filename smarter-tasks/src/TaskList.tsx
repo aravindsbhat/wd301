@@ -1,12 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import Task from "./Task";
 
 
 export interface TaskItem {
     title: string;
+    desc?: string;
+    dueDate: Date;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface State {
 }
 
@@ -32,7 +34,7 @@ class TaskList extends React.Component<Props, State> {
         return (
             <>
                 {this.props.tasks.map((task:TaskItem,index:number) => {
-                    return <Task key={index} title={task.title}/>
+                    return <Task key={index} title={task.title} desc={task.desc} dueDate={task.dueDate}/>
                 })}
             </>
         )

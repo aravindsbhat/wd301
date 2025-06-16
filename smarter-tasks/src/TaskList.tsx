@@ -1,4 +1,3 @@
-import React from "react";
 import Task from "./Task";
 
 
@@ -8,38 +7,21 @@ export interface TaskItem {
     dueDate: Date;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface State {
-}
-
 interface Props {
     tasks: TaskItem[];
+    deleteTask: (index: number)=> void;
 }
 
 
-class TaskList extends React.Component<Props, State> {
-    // constructor(props:Props){
-    //     super(props);
-    //     this.state = {
-    //         tasks: []
-    //     };
-    // }
 
-    // componentDidMount(): void {
-    //     const tasks = [{title: "Pay rent"},{title: "Learn React"},{title: "Get a job"}];
-    //     this.setState((state, props) => ({tasks}));
-    // }
-
-    render(): React.ReactNode {
-        return (
-            <>
-                {this.props.tasks.map((task:TaskItem,index:number) => {
-                    return <Task key={index} title={task.title} desc={task.desc} dueDate={task.dueDate}/>
-                })}
-            </>
-        )
-
-    }
+const TaskList = (props: Props) => {
+    return (
+        <>
+            {props.tasks.map((task:TaskItem,index:number) => {
+                return <li className="list-none"><Task key={index} title={task.title} desc={task.desc} dueDate={task.dueDate} onDelete={() => props.deleteTask(index)}/></li>
+            })}
+        </>
+    )
 }
 
 export default TaskList;

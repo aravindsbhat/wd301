@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./TaskCard.css";
 import type { TaskItem } from "./TaskList";
 
@@ -9,11 +10,12 @@ interface TaskProps {
 const Task = (props: TaskProps) => {
 
     const {item, onDelete} = props;
+    const navigate = useNavigate();
+
     return (
         <div className="TaskItem">
-            <a href={`tasks/${item.id || ""}`}>
-            <div className="text-3xl shadow">{item.title}</div>
-            </a>
+            
+            <div onClick={()=>navigate(`/tasks/${item.id || ""}`)} className="text-3xl shadow cursor-pointer">{item.title}</div>
             <div className="">{item.desc}</div>
             <div className="">{item.dueDate? new Date(item.dueDate).toISOString().slice(0,10):""}</div>
             <div>

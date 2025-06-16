@@ -2,6 +2,7 @@ import Task from "./Task";
 
 
 export interface TaskItem {
+    id: number;
     title: string;
     desc?: string;
     dueDate: Date;
@@ -17,8 +18,8 @@ interface Props {
 const TaskList = (props: Props) => {
     return (
         <>
-            {props.tasks.map((task:TaskItem,index:number) => {
-                return <li className="list-none"><Task key={index} title={task.title} desc={task.desc} dueDate={task.dueDate} onDelete={() => props.deleteTask(index)}/></li>
+            {props.tasks.map((task:TaskItem) => {
+                return <li className="list-none"><Task key={task.id} item={task} onDelete={() => props.deleteTask(task.id)}/></li>
             })}
         </>
     )

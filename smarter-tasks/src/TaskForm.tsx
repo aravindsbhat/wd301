@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import type { TaskItem } from "./TaskList";
 
 interface TaskFormProps {
-    addTask: (task: TaskItem) => void;
+    addTask: (task: Omit<TaskItem,"id">) => void;
 }
 interface TaskFormState{
     title: string;
@@ -30,7 +30,7 @@ const TaskForm = (props: TaskFormProps) => {
     
     const addTask: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
-        const newTask: TaskItem = {
+        const newTask: Omit<TaskItem,"id"> = {
             title: formState.title,
             desc: formState.desc,
             dueDate: formState.dueDate ? new Date (formState.dueDate) : null as unknown as Date,

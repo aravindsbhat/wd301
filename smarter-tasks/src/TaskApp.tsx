@@ -2,6 +2,7 @@ import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
 import type { TaskItem } from "./TaskList";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import React from "react";
 
 interface TaskAppState {
   tasks: TaskItem[];
@@ -14,14 +15,16 @@ const TaskApp = () => {
     { tasks: [] }
   );
 
-  const addTask = (task: TaskItem) => {
-    setTaskState({tasks: [...taskState.tasks, task]});
+  const idref = React.useRef(taskState.tasks.length);
+
+  const addTask = (task: Omit<TaskItem,"id">) => {
+    const newTask = {...task, id: idref.current++} as TaskItem;
+    setTaskState({tasks: [...taskState.tasks, newTask]});
   }
 
-  const deleteTask = (index: number) => {
-    const newTasks = [...taskState.tasks];
-    newTasks.splice(index,1);
-    setTaskState({tasks: newTasks});
+  const deleteTask = (id: number) => {
+    const newTasks = taskState.tasks.filter((task)=> task.id !== id);
+    setTaskState({tasks: newTasks})
   }
 
   return (

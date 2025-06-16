@@ -15,7 +15,11 @@ const TaskApp = () => {
     { tasks: [] }
   );
 
-  const idref = React.useRef(taskState.tasks.length);
+  const idref = React.useRef(0);
+  React.useEffect(() => {
+    const maxId = Math.max(0, ...taskState.tasks.map(task => task.id ?? 0));
+    idref.current = maxId + 1;
+  }, []);
 
   const addTask = (task: Omit<TaskItem,"id">) => {
     const newTask = {...task, id: idref.current++} as TaskItem;

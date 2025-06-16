@@ -19,7 +19,7 @@ const TaskList = (props: Props) => {
     return (
         <>
             {props.tasks.map((task:TaskItem) => {
-                return <li className="list-none"><Task key={task.id} item={task} onDelete={() => props.deleteTask(task.id)}/></li>
+                return <li key={task.id} className="list-none"><Task item={task} onDelete={() => props.deleteTask(task.id)}/></li>
             })}
         </>
     )

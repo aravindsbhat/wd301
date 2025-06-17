@@ -15,7 +15,7 @@ const Task = (props: TaskProps) => {
     return (
         <div className="TaskItem">
             
-            <a><div onClick={()=>navigate(`/tasks/${item.id || ""}`)} className="text-3xl shadow cursor-pointer">{item.title}</div></a>
+            <a href={`/tasks/${item.id}`}><div onClick={()=>navigate(`/tasks/${item.id || ""}`)} className="text-3xl shadow cursor-pointer">{item.title}</div></a>
             <div className="">{item.desc}</div>
             <div className="">{item.dueDate? new Date(item.dueDate).toISOString().slice(0,10):""}</div>
             <div>

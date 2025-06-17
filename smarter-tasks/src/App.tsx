@@ -1,20 +1,30 @@
 import './App.css'
 // import TaskApp from './TaskApp';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import Signin from './pages/Signin';
-import TaskListPage from './pages/TaskListPage';
-import Layout from './Layout';
-import TaskDetailsPage from './pages/TaskDetailsPage';
+// import { Navigate } from 'react-router-dom';
+// import HomePage from './pages/HomePage';
+import Signin from './pages/signin';
+// import TaskListPage from './pages/TaskListPage';
+// import Layout from './Layout';
+// import TaskDetailsPage from './pages/TaskDetailsPage';
+// import Header from './components/Header';
+// import Form from './Form';
+// import ReactPlayground from './ReactPlayground';
 import ProtectedRoute from './ProtectedRoute';
 import NotFound from './pages/Notfound';
+import Signup from './pages/signup';
+import Dashboard from './pages/dashboard';
 
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/signin" replace />
+    element: <Signup />
+  },
+
+  {
+    path: '/signup',
+    element: <Signup />
   },
 
   {
@@ -23,37 +33,20 @@ const router = createBrowserRouter([
   },
 
   {
-  
-    element:(
+    path: '/dashboard',
+    element: 
       <ProtectedRoute>
-        <Layout/>
-      </ProtectedRoute> 
-    ),
+        <Dashboard />
+      </ProtectedRoute>
+  },
 
-    children: [
-    {
-      path: 'home',
-      element: <HomePage/>
-    },
-
-    {
-      path: 'tasks',
-      element: <TaskListPage/>
-    },
-
-    {
-      path: 'tasks/:id',
-      element: <TaskDetailsPage/>
-    }
-    ]
+  {
+    path: '/notfound',
+    element: <NotFound />
   },
 
   {
     path: '*',
-    element: <Navigate to="/notfound" replace />
-  },
-  {
-    path: '/notfound',
     element: <NotFound />
   }
 
@@ -61,7 +54,9 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
+    <>
     <RouterProvider router={router}/>
+    </>
   );
 }
 

@@ -15,7 +15,7 @@ const Task = (props: TaskProps) => {
     return (
         <div className="TaskItem">
             
-            <Link to={`/tasks/${item.id || ""}`}><div className="text-3xl shadow cursor-pointer">{item.title}</div></Link>
+            <Link to={`/tasks/${item.id || ""}`}><h2 className="text-base font-bold my-1">{item.title}</h2></Link>
             <div className="">{item.desc}</div>
             <div className="">{item.dueDate? new Date(item.dueDate).toISOString().slice(0,10):""}</div>
             <div>

@@ -25,7 +25,7 @@ const TaskDetailsPage: React.FC = () => {
     return (
         <div className="text-blue-600 shadow-md rounded-md p-4 m-8">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-2xl font-medium">{task?.title}</h3>
+          <h3 className="text-lg font-medium">{task?.title}</h3>
           </div>
           <p className="text-gray-600">{task?.desc}</p>
           <p className="text-gray-600">{task? new Date(task.dueDate).toISOString().slice(0,10) : ""}</p>
